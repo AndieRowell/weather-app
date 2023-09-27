@@ -10,7 +10,7 @@ function init(){
     test_axios();
 }
 
-async function test_axios(){
-    const result = await axios.get(api_url);
+function test_axios(){
+    const result = axios.get(api_url);
     console.log(result);
 }
