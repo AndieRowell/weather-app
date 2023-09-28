@@ -42,9 +42,17 @@
 // - variables
 //      - what do i need to have?
 //          - weather app to connect to the div
-//          - input
+//                let weatherApp = document.getElementById("weather-app");
+
+//          - zip code input
+//
+//            let zipCodeInput = document.createElement("input");
+//              - do i need to set attributes for these elements i create?
 //              - placeholder text
-//              -
+//                  zipCodeInput.setAttribute("type", "text")
+//                  zipCodeInput.setAttribute("placeholder", "Enter Zipcode")
+
+//
 //          - submit button
 //          - display boxes
 //
@@ -59,11 +67,73 @@
 //      - the response you get should return the data into the corresponding variables that were initialized
 //      - display that data
 //      - populate the data into the "html" text displays (replace the placholders?)
+//          - use .innerHTML??
 //      - clarify the 'catch' errors and populate the error text displays
 
 // still need to use appendChild to append the elements to the weather app div
+//  - can add this to the end - but can't forget this!!!!
+
+// USING AXIOS TO GET DATA FROM API
+// - need to define the get request
+//      - axios.get(api....)
+//          .then((response) => {
+//              const data = response.data;
+// - extract and display relevent weather data
+//              const
+//        })
 
 
 // EXTRAS - STRETCH GOALS?
 // - a toggle button to change from celsius to fahrenheit - vice versa
 //      - probably use an if else statement with the click handler?
+// - render a loading spinner/bar while axios gets the data
+
+//LOADING BAR
+// - html <progress>
+// - set attributes - value="0" max ="100"
+// - an id is needed? - progress-bar
+/*
+    <label for="progress-bar">0%</label>
+    <progress id="progress-bar" value="0" max="100"></progress>
+*/
+
+
+//=====================================================================================
+
+// testing axios call
+// global variables
+/*
+const api_url = "https://jsonplaceholder.typicode.com/posts/1"
+function init(){
+    setup variables, const
+    clickhandlers
+
+    console.log("hello sandbox");
+    test_axios();
+}
+
+function test_axios(){
+    const result = axios.get(api_url);
+    console.log(result);
+}
+*/
+
+// connects to main div in html
+const weatherApp = document.getElementById("weather-app");
+// creates a zipcode input element
+const zipCodeInput = document.createElement("input");
+// sets type attribute and placeholder text
+zipCodeInput.setAttribute("type", "text");
+zipCodeInput.setAttribute("placeholder", "Enter Zipcode");
+// creates a submit button element
+const submitButton = document.createElement("button");
+// adds text to the submit button
+submitButton.textContent = "Get Weather";
+// creates a div for the city info to be displayed
+const weatherCity = document.createElement("div");
+// creates a div for the temperature info to be displayed
+const weatherTemp = document.createElement("div");
+// creates a div for the condition info to be displayed
+const weatherCond = document.createElement("div");
+// creates a div for the image to be displayed
+const weatherImage = document.createElement("div");
