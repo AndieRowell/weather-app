@@ -130,27 +130,41 @@ function test_axios(){
 
 // connects to main div in html
 const weatherApp = document.getElementById("weather-app");
+
+// creates a 'parent' div to contain the input and button together
+const inputButtonContainer = document.createElement("div");
+
+
 // creates a zipcode input element
 const zipCodeInput = document.createElement("input");
 // sets type attribute and placeholder text
 zipCodeInput.setAttribute("type", "text");
 zipCodeInput.setAttribute("placeholder", "Enter Zipcode");
+zipCodeInput.classList.add("text-center", "mx-auto", "d-flex");
+
 // creates a submit button element
 const submitButton = document.createElement("button");
 // adds text to the submit button
 submitButton.textContent = "Get Weather";
+
 // creates a div for the city info to be displayed
 const weatherCity = document.createElement("div");
+
 // creates a div for the temperature info to be displayed
 const weatherTemp = document.createElement("div");
+
 // creates a div for the condition info to be displayed
 const weatherCond = document.createElement("div");
+
 // creates a div for the image to be displayed
 const weatherImage = document.createElement("div");
 
 //do i need a function to be creating these cards instead to add bootstrap styling?
-function createWeatherCard =
-
+// function createWeatherCard(title, data) {
+    // const card = document.createElement("div");
+    // card.classList.add ("card");
+// }
+//css tricks - complete guide to flexbox
 
 
 
@@ -164,6 +178,20 @@ submitButton.addEventListener('click', getWeatherInfo);
 const getWeatherInfo = async () => {
     const response = await axios.get("");
 };
+
+const weatherInfo =
+
+const getWeatherInfo = async () => {
+    try {
+         const weatherInfo = await axios.get('url')
+    } catch(err) {
+         console.log('err')
+    }
+}
+
+
+
+
 
 /*
 axios.get("https://api.openweathermap.org/data/2.5/weather?q=Lisbon&APPID={YOUR_API_KEY}")
@@ -193,3 +221,9 @@ weatherApp.appendChild(weatherCity);
 weatherApp.appendChild(weatherTemp);
 weatherApp.appendChild(weatherCond);
 weatherApp.appendChild(weatherImage);
+
+
+//append smaller divs to the larger container divs
+//and append the larger container div to the html through get element by id
+
+//document.body.
