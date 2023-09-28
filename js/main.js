@@ -137,3 +137,12 @@ const weatherTemp = document.createElement("div");
 const weatherCond = document.createElement("div");
 // creates a div for the image to be displayed
 const weatherImage = document.createElement("div");
+
+
+//append these to the weather-app div
+weatherApp.appendChild(zipCodeInput);
+weatherApp.appendChild(submitButton);
+weatherApp.appendChild(weatherCity);
+weatherApp.appendChild(weatherTemp);
+weatherApp.appendChild(weatherCond);
+weatherApp.appendChild(weatherImage);
