@@ -64,6 +64,7 @@
 // - submit button needs a click event listener to call to the api
 //      - axios request to the weather api
 //      - use the given api key
+//          - 3e79b3e3191c769f1ad5bd499fc2b06e
 //      - the response you get should return the data into the corresponding variables that were initialized
 //      - display that data
 //      - populate the data into the "html" text displays (replace the placholders?)
@@ -83,10 +84,17 @@
 //        })
 
 
+
 // EXTRAS - STRETCH GOALS?
 // - a toggle button to change from celsius to fahrenheit - vice versa
 //      - probably use an if else statement with the click handler?
 // - render a loading spinner/bar while axios gets the data
+
+// NOTE! - parameters for temp units
+// - fahrenheit = imperial
+// - celsius = metric
+// - temp in kelvin is the default
+
 
 //LOADING BAR
 // - html <progress>
@@ -118,6 +126,8 @@ function test_axios(){
 }
 */
 
+// const getWeatherInfo = axios.get("https://api.openweathermap.org/data/2.5/weather?zip={zip code},&appid={3e79b3e3191c769f1ad5bd499fc2b06e}")
+
 // connects to main div in html
 const weatherApp = document.getElementById("weather-app");
 // creates a zipcode input element
@@ -138,8 +148,45 @@ const weatherCond = document.createElement("div");
 // creates a div for the image to be displayed
 const weatherImage = document.createElement("div");
 
+//do i need a function to be creating these cards instead to add bootstrap styling?
+function createWeatherCard =
 
-//append these to the weather-app div
+
+
+
+
+// add event listener to button
+submitButton.addEventListener('click', getWeatherInfo);
+
+// function to call to the api?
+//const axios = require("axios");
+
+const getWeatherInfo = async () => {
+    const response = await axios.get("");
+};
+
+/*
+axios.get("https://api.openweathermap.org/data/2.5/weather?q=Lisbon&APPID={YOUR_API_KEY}")
+  .then(response => {
+    const weather = response.data;
+    const lon = weather.coord.lon;
+    const lat = weather.coord.lat;
+    console.log(`The temperature in Lisbon is ${weather.main.temp}^oC`);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+*/
+
+//axios.get("https://api.openweathermap.org/data/2.5/weather?zip={zip code},&appid={3e79b3e3191c769f1ad5bd499fc2b06e}&units=imperial");
+//    .then
+
+
+
+
+
+
+//appends newly created elements to the weather-app div
 weatherApp.appendChild(zipCodeInput);
 weatherApp.appendChild(submitButton);
 weatherApp.appendChild(weatherCity);
