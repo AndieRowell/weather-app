@@ -131,12 +131,15 @@ function test_axios(){
 // connects to main div in html
 const weatherApp = document.getElementById("weather-app");
 
+
 // creates a 'parent' div to contain the input and button together
 const inputButtonContainer = document.createElement("div");
-
+weatherApp.appendChild(inputButtonContainer);
 
 // creates a zipcode input element
 const zipCodeInput = document.createElement("input");
+inputButtonContainer.appendChild(zipCodeInput);
+
 // sets type attribute and placeholder text
 zipCodeInput.setAttribute("type", "text");
 zipCodeInput.setAttribute("placeholder", "Enter Zipcode");
@@ -144,8 +147,14 @@ zipCodeInput.classList.add("text-center", "mx-auto", "d-flex");
 
 // creates a submit button element
 const submitButton = document.createElement("button");
+inputButtonContainer.appendChild(submitButton);
+
 // adds text to the submit button
 submitButton.textContent = "Get Weather";
+
+
+
+
 
 // creates a div for the city info to be displayed
 const weatherCity = document.createElement("div");
@@ -169,12 +178,20 @@ const weatherImage = document.createElement("div");
 
 
 
-// add event listener to button
-submitButton.addEventListener('click', getWeatherInfo);
+// add event listener to button - when clicked store zipcode variable value in the zipcodeInput?
+submitButton.addEventListener('click', () => {
+    const zipcode = zipcodeInput.value;
+
+    axios.get("api.....")
+        .then((response) => {
+            const data = response.data;
+        } )
+});
 
 // function to call to the api?
 //const axios = require("axios");
 
+/*
 const getWeatherInfo = async () => {
     const response = await axios.get("");
 };
@@ -188,7 +205,7 @@ const getWeatherInfo = async () => {
          console.log('err')
     }
 }
-
+*/
 
 
 
@@ -215,8 +232,8 @@ axios.get("https://api.openweathermap.org/data/2.5/weather?q=Lisbon&APPID={YOUR_
 
 
 //appends newly created elements to the weather-app div
-weatherApp.appendChild(zipCodeInput);
-weatherApp.appendChild(submitButton);
+//weatherApp.appendChild(zipCodeInput);
+//weatherApp.appendChild(submitButton);
 weatherApp.appendChild(weatherCity);
 weatherApp.appendChild(weatherTemp);
 weatherApp.appendChild(weatherCond);
