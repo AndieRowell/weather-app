@@ -30,6 +30,9 @@
 - displayed information is populated using javascript
 - will need placeholder information until pulled data is displayed
 
+  ![weatherapp-pseudo-drawing](https://github.com/AndieRowell/weather-app/assets/134252065/c92f060e-ddf5-4ef7-aca8-842652b8e639)
+
+
 ### Questions to Ask While Pseudocoding:
 
 [!NOTE]
