@@ -64,6 +64,7 @@
 // - submit button needs a click event listener to call to the api
 //      - axios request to the weather api
 //      - use the given api key
+//          - 3e79b3e3191c769f1ad5bd499fc2b06e
 //      - the response you get should return the data into the corresponding variables that were initialized
 //      - display that data
 //      - populate the data into the "html" text displays (replace the placholders?)
@@ -83,10 +84,17 @@
 //        })
 
 
+
 // EXTRAS - STRETCH GOALS?
 // - a toggle button to change from celsius to fahrenheit - vice versa
 //      - probably use an if else statement with the click handler?
 // - render a loading spinner/bar while axios gets the data
+
+// NOTE! - parameters for temp units
+// - fahrenheit = imperial
+// - celsius = metric
+// - temp in kelvin is the default
+
 
 //LOADING BAR
 // - html <progress>
@@ -99,6 +107,140 @@
 
 
 //=====================================================================================
+
+//INITIALIZE
+// THERE SHOULD BE A FUNCTION THAT INITIALIZES
+// This would create the element and click handler
+
+const apiKey = "3e79b3e3191c769f1ad5bd499fc2b06e"; //api Key
+const apiUrl = "https://api.openweathermap.org/data/2.5/weather?zip="; //api url
+
+//!function to initialize
+function init(){
+
+//* connect html div to js
+    const weatherApp = document.getElementById("weather-app");
+
+//* create input and button div
+    const inputButtonContainer = document.createElement("div");
+    weatherApp.appendChild(inputButtonContainer);
+
+//* create form element
+    const inputForm = document.createElement("form");
+    inputButtonContainer.appendChild(inputForm);
+
+//* create zipcode input field
+    const zipCodeInput = document.createElement("input");
+    // sets type attribute and placeholder text
+    zipCodeInput.setAttribute("type", "text");
+    zipCodeInput.setAttribute("placeholder", "Enter Zipcode");
+    zipCodeInput.classList.add("text-center", "mx-auto", "d-flex");
+    inputForm.appendChild(zipCodeInput);
+
+//* create submit button
+    const submitButton = document.createElement("button");
+    submitButton.textContent = "Get Weather";
+    inputForm.appendChild(submitButton);
+
+//* event listener to operate button
+    submitButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        const zipCodeValue = zipCodeInput.value;
+        if (checkZipDigits(zipCodeValue)){
+            getWeatherData(zipCodeValue)
+                .then((data) => {
+                    createWeatherDisplay();
+                    displayData(data);
+                    return data;
+                })
+                .catch((error) => {
+                    console.error(error);
+                })
+                .finally((info) => console.log("All done " + info));
+        }
+
+    });
+}
+//when clicked submit button runs checkzipdigits function
+
+
+//!function to check if all 5 digits of zipcode are entered - else alert message
+function checkZipDigits(zipcode){
+    if (zipcode.length != 5 || isNaN(zipcode)){
+        alert('Invalid zipcode')
+        return false;
+    } else {
+        return true;
+    }
+};
+
+// the getweatherdata function should run once zipcode is correct and submit button clicked
+
+
+//!function that uses axios to call to api
+async function getWeatherData(){
+    try {
+        const connectApiUrl = `${apiUrl}${zipcode}&appid=${apiKey}`;
+        let weatherData = await axios.get(connectApiUrl);
+        console.log(weatherData.data);
+        return weatherData.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+
+
+//     let weatherData = await axios.get("https://api.openweathermap.org/data/2.5/weather?zip={zip code},&appid={3e79b3e3191c769f1ad5bd499fc2b06e}")
+//     console.log(weatherData.data)
+//     return weatherData.data
+// }   catch (error){
+
+// };
+
+//     return weatherData
+//     .then((response) => {
+//         const weather = response.data;
+//         const
+//         const
+//         instead set State - and then render what's in state using the function created for making the displays
+//     })
+//     .catch(error => {
+//         console.log(error);
+//     })
+// });
+
+//!function to create the display
+function createWeatherDisplay() {
+    const card = document.createElement("div");
+    card.classList.add ("card");
+
+};
+
+
+//!function to display data
+function displayData(data) {
+    city.textCont
+
+    cityTitle.textContent = "City:";
+    weatherApp.appendChild(cityTitle);
+
+    cityTitle.textContent = "City:"
+    cityData.textContent = "${data.name}"
+    tempTitle.textContent = "Temperature:"
+    kelvin.textContent = ""
+    fahrenheit.textContent = ""
+    celsius.textContent = ""
+    conditionTitle.textContent = "Condition:"
+    otherInfoTitle.textContent = ""
+
+};
+
+// function createWeatherCard(title, data) {
+    // const card = document.createElement("div");
+    // card.classList.add ("card");
+// }
+
 
 // testing axios call
 // global variables
@@ -118,31 +260,163 @@ function test_axios(){
 }
 */
 
+// const getWeatherInfo = axios.get("https://api.openweathermap.org/data/2.5/weather?zip={zip code},&appid={3e79b3e3191c769f1ad5bd499fc2b06e}")
+
 // connects to main div in html
-const weatherApp = document.getElementById("weather-app");
+//const weatherApp = document.getElementById("weather-app");
+
+
+// creates a 'parent' div to contain the input and button together
+//const inputButtonContainer = document.createElement("div");
+//weatherApp.appendChild(inputButtonContainer);
+
 // creates a zipcode input element
-const zipCodeInput = document.createElement("input");
+//const zipCodeInput = document.createElement("input");
+//inputButtonContainer.appendChild(zipCodeInput);
+
 // sets type attribute and placeholder text
-zipCodeInput.setAttribute("type", "text");
-zipCodeInput.setAttribute("placeholder", "Enter Zipcode");
+//zipCodeInput.setAttribute("type", "text");
+//zipCodeInput.setAttribute("placeholder", "Enter Zipcode");
+//zipCodeInput.classList.add("text-center", "mx-auto", "d-flex");
+
 // creates a submit button element
-const submitButton = document.createElement("button");
+//const submitButton = document.createElement("button");
+//inputButtonContainer.appendChild(submitButton);
+
 // adds text to the submit button
-submitButton.textContent = "Get Weather";
+//submitButton.textContent = "Get Weather";
+
+
+
+
+
 // creates a div for the city info to be displayed
-const weatherCity = document.createElement("div");
+//const weatherCity = document.createElement("div");
+
 // creates a div for the temperature info to be displayed
-const weatherTemp = document.createElement("div");
+//const weatherTemp = document.createElement("div");
+
 // creates a div for the condition info to be displayed
-const weatherCond = document.createElement("div");
+//const weatherCond = document.createElement("div");
+
 // creates a div for the image to be displayed
-const weatherImage = document.createElement("div");
+//const weatherImage = document.createElement("div");
+
+// turning wet to dry.....
+// add a class to my main div
+
+// create specific blocks - so that i can repeat for each of the element groupings
+
+//function to make a block - have "instructions"
+// - creates the div 'display block'
+// - .classlist.add (col-4 or row)
 
 
-//append these to the weather-app div
-weatherApp.appendChild(zipCodeInput);
-weatherApp.appendChild(submitButton);
-weatherApp.appendChild(weatherCity);
-weatherApp.appendChild(weatherTemp);
-weatherApp.appendChild(weatherCond);
-weatherApp.appendChild(weatherImage);
+
+
+// - header block
+// - need to append display and header
+// - creates the header text - const headerText - textContent
+// - creates the body text
+// if else within - if there is an image != undefined - then an image is rendered
+// - else the text is rendered
+// if(instructions.img != undefined) {
+//   const img
+//}
+// - a for loop within if
+// - looping through - if the data is defined then loop through the array and add display blocks
+
+
+//do i need a function to be creating these cards instead to add bootstrap styling?
+// function createWeatherCard(title, data) {
+    // const card = document.createElement("div");
+    // card.classList.add ("card");
+// }
+//css tricks - complete guide to flexbox
+
+
+
+
+// add event listener to button - when clicked store zipcode variable value in the zipcodeInput?
+//submitButton.addEventListener('click', getWeatherData);
+
+
+//under a function getWeatherData
+
+//data has to be stored first
+//const zipcode = zipcodeInput.value;
+// then use axios to call to the api
+// axios.get("https://api.openweathermap.org/data/2.5/weather?zip={zip code},&appid={3e79b3e3191c769f1ad5bd499fc2b06e}")
+//         .then((response) => {
+//             const weather = response.data;
+//             const
+//             const
+            // instead set State - and then render what's in state using the function created for making the displays
+//         })
+//         .catch(error => {
+//             console.log(error);
+//         })
+// });
+
+
+
+
+// function to call to the api?
+//const axios = require("axios");
+
+/*
+const getWeatherInfo = async () => {
+    const response = await axios.get("");
+};
+
+const weatherInfo =
+
+const getWeatherInfo = async () => {
+    try {
+         const weatherInfo = await axios.get('url')
+    } catch(err) {
+         console.log('err')
+    }
+}
+*/
+
+
+
+
+/*
+axios.get("https://api.openweathermap.org/data/2.5/weather?q=Lisbon&APPID={YOUR_API_KEY}")
+  .then(response => {
+    const weather = response.data;
+    const lon = weather.coord.lon;
+    const lat = weather.coord.lat;
+    console.log(`The temperature in Lisbon is ${weather.main.temp}^oC`);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+*/
+
+//axios.get("https://api.openweathermap.org/data/2.5/weather?zip={zip code},&appid={3e79b3e3191c769f1ad5bd499fc2b06e}&units=imperial");
+//    .then
+
+
+
+
+
+
+//appends newly created elements to the weather-app div
+//weatherApp.appendChild(zipCodeInput);
+//weatherApp.appendChild(submitButton);
+// weatherApp.appendChild(weatherCity);
+// weatherApp.appendChild(weatherTemp);
+// weatherApp.appendChild(weatherCond);
+// weatherApp.appendChild(weatherImage);
+
+
+//append smaller divs to the larger container divs
+//and append the larger container div to the html through get element by id
+
+//document.body.
+
+
+// consider - when the user wants to look up another zip code - everything should be cleared and rerendered
