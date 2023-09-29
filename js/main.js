@@ -116,6 +116,7 @@
 function init(){
     const apiKey = "3e79b3e3191c769f1ad5bd499fc2b06e" //api Key
     const apiUrl = "https://api.openweathermap.org/data/2.5/weather?zip={zip code},&appid={3e79b3e3191c769f1ad5bd499fc2b06e}" //api url
+    const weatherApp = document.getElementById("weather-app"); // connects to main div in html
     submitButton.addEventListener('click', checkZipDigits); //when clicked submit button runs checkzipdigits function
 
     function checkZipDigits();
@@ -138,6 +139,9 @@ function checkZipDigits(){
     }
 };
 
+// the getweatherdata function should run once zipcode is correct and submit button clicked
+
+
 //!function that uses axios to call to api
 async function getWeatherData(){
     try
@@ -153,16 +157,34 @@ async function getWeatherData(){
 //         const weather = response.data;
 //         const
 //         const
-//         // instead set State - and then render what's in state using the function created for making the displays
+//         instead set State - and then render what's in state using the function created for making the displays
 //     })
 //     .catch(error => {
 //         console.log(error);
 //     })
 // });
 
+//!function to create the display
+function createWeatherDisplay() {
+    const card = document.createElement("div");
+    card.classList.add ("card");
+
+};
 
 
-}
+//!function to display data
+function displayData(data) {
+    cityTitle.textContent = "City:"
+    cityData.textContent = "${data.name}"
+    tempTitle.textContent = "Temperature:"
+    tempData.textContent = ""
+
+};
+// function createWeatherCard(title, data) {
+    // const card = document.createElement("div");
+    // card.classList.add ("card");
+// }
+
 
 // testing axios call
 // global variables
@@ -232,6 +254,8 @@ const weatherImage = document.createElement("div");
 //function to make a block - have "instructions"
 // - creates the div 'display block'
 // - .classlist.add (col-4 or row)
+
+
 
 
 // - header block
