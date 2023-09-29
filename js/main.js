@@ -108,6 +108,62 @@
 
 //=====================================================================================
 
+//INITIALIZE
+// THERE SHOULD BE A FUNCTION THAT INITIALIZES
+// This would create the element and click handler
+
+//!function to initialize
+function init(){
+    const apiKey = "3e79b3e3191c769f1ad5bd499fc2b06e" //api Key
+    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?zip={zip code},&appid={3e79b3e3191c769f1ad5bd499fc2b06e}" //api url
+    submitButton.addEventListener('click', checkZipDigits); //when clicked submit button runs checkzipdigits function
+
+    function checkZipDigits();
+    //set up form visual
+
+};
+
+
+
+
+
+
+//!function to check if all 5 digits of zipcode are entered - else alert message
+function checkZipDigits(){
+    if (zipcode.length != 5 || isNaN(zipcode)){
+        alert('invalid zipcode')
+        return false
+    } else {
+        return true
+    }
+};
+
+//!function that uses axios to call to api
+async function getWeatherData(){
+    try
+    let weatherData = await axios.get("https://api.openweathermap.org/data/2.5/weather?zip={zip code},&appid={3e79b3e3191c769f1ad5bd499fc2b06e}")
+    console.log(weatherData.data)
+    return weatherData.data
+}   catch (error){
+
+};
+
+//     return weatherData
+//     .then((response) => {
+//         const weather = response.data;
+//         const
+//         const
+//         // instead set State - and then render what's in state using the function created for making the displays
+//     })
+//     .catch(error => {
+//         console.log(error);
+//     })
+// });
+
+
+
+}
+
 // testing axios call
 // global variables
 /*
@@ -168,6 +224,29 @@ const weatherCond = document.createElement("div");
 // creates a div for the image to be displayed
 const weatherImage = document.createElement("div");
 
+// turning wet to dry.....
+// add a class to my main div
+
+// create specific blocks - so that i can repeat for each of the element groupings
+
+//function to make a block - have "instructions"
+// - creates the div 'display block'
+// - .classlist.add (col-4 or row)
+
+
+// - header block
+// - need to append display and header
+// - creates the header text - const headerText - textContent
+// - creates the body text
+// if else within - if there is an image != undefined - then an image is rendered
+// - else the text is rendered
+// if(instructions.img != undefined) {
+//   const img
+//}
+// - a for loop within if
+// - looping through - if the data is defined then loop through the array and add display blocks
+
+
 //do i need a function to be creating these cards instead to add bootstrap styling?
 // function createWeatherCard(title, data) {
     // const card = document.createElement("div");
@@ -179,14 +258,28 @@ const weatherImage = document.createElement("div");
 
 
 // add event listener to button - when clicked store zipcode variable value in the zipcodeInput?
-submitButton.addEventListener('click', () => {
-    const zipcode = zipcodeInput.value;
+submitButton.addEventListener('click', getWeatherData);
 
-    axios.get("api.....")
+
+//under a function getWeatherData
+
+//data has to be stored first
+const zipcode = zipcodeInput.value;
+// then use axios to call to the api
+axios.get("https://api.openweathermap.org/data/2.5/weather?zip={zip code},&appid={3e79b3e3191c769f1ad5bd499fc2b06e}")
         .then((response) => {
-            const data = response.data;
-        } )
+            const weather = response.data;
+            const
+            const
+            // instead set State - and then render what's in state using the function created for making the displays
+        })
+        .catch(error => {
+            console.log(error);
+        })
 });
+
+
+
 
 // function to call to the api?
 //const axios = require("axios");
@@ -244,3 +337,6 @@ weatherApp.appendChild(weatherImage);
 //and append the larger container div to the html through get element by id
 
 //document.body.
+
+
+// consider - when the user wants to look up another zip code - everything should be cleared and rerendered...
