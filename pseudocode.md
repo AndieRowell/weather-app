@@ -51,7 +51,7 @@ Consider defensive programming.
 - What if the whole layout is changed to consider a better option for mobile/desktop?
 
 [!NOTE]
-Consider **MSCW** - **M**ust have, **S**hould have, **C**ould have, **W**ould have
+Consider **MSCW** - **M**ust have, **S**hould have, **C**ould have, **W**on't have
 
 - If we use an error message to display when a zipcode has been entered incorrectly - is that displayed in the same display box? or as a popup?
     - what is annoying to a user? - popup
